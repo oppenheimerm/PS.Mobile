@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PS.Mobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PS.Mobile"
+    xmlns:pages="clr-namespace:PS.Mobile.Pages"
+    Shell.FlyoutBehavior="Disabled">
+
+    <!-- 
+    Used to check if the current user is authenticated.
+    Not authenticated than redirect the user to the page
+    below: LoginPage
+    -->
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate pages:LoginPage}"
+        Route="LoginPage" />
+
+    <TabBar>
+
+        <ShellContent
+        Title="Users"
+        ContentTemplate="{DataTemplate pages:UsersPage}"
+        Route="UsersPage" />
+            
+    </TabBar>
+</Shell>
