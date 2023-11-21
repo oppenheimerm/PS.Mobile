@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PS.Mobile.Pages.RegisterPage"
+             xmlns:local ="clr-namespace:PS.Mobile.CustomComponents"
+             Title="RegisterPage">
+    <Grid Margin="12, 24">
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout Spacing="0">
+                <Image HeightRequest="48" WidthRequest="48" Source="img_holder.png"
+                       SemanticProperties.Description="PetrolSist application logo."
+                       HorizontalOptions="Center" />
+                <Label
+                    Margin="0"                    
+                    TextColor="Black"
+                    HorizontalTextAlignment="Center"
+                    Text="PetrolSist" />
+
+                <Label
+                    Margin="0"
+                    TextColor="Gray"
+                    HorizontalTextAlignment="Center"
+                    Text="We will send an email confirmation in the next step.  Please complete the following form." />
+
+                <VerticalStackLayout Margin="0, 20, 0, 0">
+                    <Label Text="First name" />
+                    <StackLayout>
+                        <local:BorderlessEntry Placeholder="Enter first name:" Margin="{OnPlatform Android='0, 0', iOS='0, 12'}" />
+                        <!--  draws a simple rectangle or square, of a specified width, height, and color. -->
+                        <BoxView HeightRequest="1" Color="#4529BA" />
+                    </StackLayout>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Margin="0, 20, 0, 0">
+                    <Label Text="Last name" />
+                    <StackLayout>
+                        <local:BorderlessEntry Placeholder="Enter last name:" Margin="{OnPlatform Android='0, 0', iOS='0, 12'}" />
+                        <!--  draws a simple rectangle or square, of a specified width, height, and color. -->
+                        <BoxView HeightRequest="1" Color="#4529BA" />
+                    </StackLayout>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Margin="0, 20, 0, 0">
+                    <Label Text="Initials" />
+                    <StackLayout>
+                        <local:BorderlessEntry Placeholder="Initials:" Margin="{OnPlatform Android='0, 0', iOS='0, 12'}" />
+                        <!--  draws a simple rectangle or square, of a specified width, height, and color. -->
+                        <BoxView HeightRequest="1" Color="#4529BA" />
+                    </StackLayout>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Margin="0, 20, 0, 0">
+                    <Label Text="Email address" />
+                    <StackLayout>
+                        <local:BorderlessEntry Placeholder="Email:" Margin="{OnPlatform Android='0, 0', iOS='0, 12'}" />
+                        <!--  draws a simple rectangle or square, of a specified width, height, and color. -->
+                        <BoxView HeightRequest="1" Color="#4529BA" />
+                    </StackLayout>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Margin="0, 20, 0, 0">
+                    <Label Text="Password" />
+                    <StackLayout>
+                        <local:BorderlessEntry Placeholder="Password" Margin="{OnPlatform Android='0, 0', iOS='0, 12'}" />
+                        <!--  draws a simple rectangle or square, of a specified width, height, and color. -->
+                        <BoxView HeightRequest="1" Color="#4529BA" />
+                    </StackLayout>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Margin="0, 20, 0, 0">
+                    <Label Text="Confirm Password" />
+                    <StackLayout>
+                        <local:BorderlessEntry Placeholder="Confirm password" Margin="{OnPlatform Android='0, 0', iOS='0, 12'}" />
+                        <!--  draws a simple rectangle or square, of a specified width, height, and color. -->
+                        <BoxView HeightRequest="1" Color="#4529BA" />
+                    </StackLayout>
+                </VerticalStackLayout>
+
+                <Button
+                    Margin="0, 20, 0, 0"                    
+                    HorizontalOptions="Center"                    
+                    Text="Register"
+                    Command="{Binding SignUpCommand}" />
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

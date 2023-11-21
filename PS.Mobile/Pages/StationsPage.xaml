@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PS.Mobile.Pages.StationsPage"
+             xmlns:model="clr-namespace:PS.Core.Models.ApiRequestResponse;assembly=PS.Core"
+             xmlns:viewmodel="clr-namespace:PS.Mobile.ViewModels"
+             x:DataType="viewmodel:StationsVM"
+             Title="{Binding Title}">
+
+    <!-- 
+        Absolute – the row height or column width is a value in device-independent units (a number in XAML).
+        Auto – the row height or column width is autosized based on the cell contents (Auto in XAML).
+        Star – leftover row height or column width is allocated proportionally (a number followed by * in XAML).
+    -->
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="5"
+          RowDefinitions="*, Auto"
+          RowSpacing="0">
+        <!--
+            We need to wrap the Collection view in a RefreshView
+            https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/refreshview
+        
+            The .NET Multi-platform App UI (.NET MAUI) RefreshView is a container control that provides 
+            pull to refresh functionality for scrollable content. 
+        -->
+        <RefreshView Grid.ColumnSpan="2"
+                     Command="{Binding GetStationsCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <!--
+                 CollectionView is a view for presenting lists of data using different 
+                 layout specifications. It aims to provide a more flexible, and 
+                 performant alternative to ListView.
+                    See: https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/collectionview/
+            -->
+            <CollectionView BackgroundColor="Transparent"                        
+                        ItemsSource="{Binding Stations}"
+                        SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <StackLayout VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 WidthRequest="200"
+                                 HeightRequest="200">
+                        <Image Source="nostations.png" HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand" Aspect="AspectFill"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:StationLite">
+                        <Grid Padding="10">
+                            <Frame HeightRequest="124" Padding="0">
+                                <Grid Padding="0"
+                                  ColumnDefinitions="125, *">
+                                    <Image Aspect="AspectFill" WidthRequest="180"
+                                   HeightRequest="180">
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding Logos[2] }" />
+                                        </Image.Source>
+                                    </Image>
+
+                                    <VerticalStackLayout Grid.Column="1" Padding="10"
+                                                     VerticalOptions="Center">
+                                        <Label Text="{Binding StationName}" />
+                                        <Label Text="{Binding StationAddress}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </RefreshView>
+
+        <Button Text="Get Monkeys"
+                Command="{Binding GetStationsCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="1" Margin="8" 
+                Style="{StaticResource ButtonOutline}"/>
+    </Grid>
+
+</ContentPage>

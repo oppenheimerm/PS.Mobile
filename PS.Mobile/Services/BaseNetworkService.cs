@@ -8,6 +8,7 @@
         {
             this.HttpClient = httpClient;
             this.HttpClient = new HttpClient();
+            this.HttpClient.DefaultRequestHeaders.Add("Accept", "application/json");
         }
     }
 }
