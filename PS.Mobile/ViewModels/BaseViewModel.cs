@@ -7,6 +7,7 @@ namespace PS.Mobile.ViewModels
     {
         public readonly IAuthService AuthService;
         private readonly IConnectivity Connectivity;
+        public bool CanNavigateAway = false;
 
         public BaseViewModel(IAuthService authService, IConnectivity connectivity)
         {

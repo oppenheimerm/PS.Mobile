@@ -1,9 +1,14 @@
 ﻿using Android.App;
 using Android.Runtime;
 
+//  https://stackoverflow.com/questions/67071052/how-to-fix-cleartext-http-traffic-to-x-not-permitted-in-xamarin-android
 namespace PS.Mobile
 {
-    [Application]
+#if DEBUG                                   // connect to local service on the
+    [Application(UsesCleartextTraffic = true)]  // emulator's host for debugging,
+#else                                       // access via http://10.0.2.2
+[Application]                               
+#endif
     public class MainApplication : MauiApplication
     {
         public MainApplication(IntPtr handle, JniHandleOwnership ownership)

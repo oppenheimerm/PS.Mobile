@@ -20,14 +20,24 @@
     <ShellContent
         Title="Login"
         ContentTemplate="{DataTemplate pages:LoginPage}"
-        Route="LoginPage" />
+        Route="LoginPage" 
+        Shell.FlyoutBehavior="Disabled"/>
+
+    <ShellContent
+        Title="Register"
+        ContentTemplate="{DataTemplate pages:RegisterPage}"
+        Route="RegisterPage" />
 
     <TabBar>
+        <ShellContent
+        Title="Register"
+        ContentTemplate="{DataTemplate pages:SomesPage}"
+        Route="SomePage" />
 
         <ShellContent
-        Title="Users"
-        ContentTemplate="{DataTemplate pages:UsersPage}"
-        Route="UsersPage" />
-            
+        Title="Stations"
+        ContentTemplate="{DataTemplate pages:StationsPage}"
+        Route="Stations" />
+
     </TabBar>
 </Shell>
