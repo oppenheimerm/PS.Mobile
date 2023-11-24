@@ -67,7 +67,20 @@
   </ItemGroup>
 
 
+  <ItemGroup>
+    <Reference Include="PS.Core">
+      <HintPath>..\..\..\web\PS\PS.Core\obj\Release\net7.0\PS.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
 	<ItemGroup>
+	  <MauiXaml Update="Pages\ForgotPasswordPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\RegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

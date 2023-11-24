@@ -84,6 +84,12 @@ namespace PS.Mobile.ViewModels
 		}
 
         [RelayCommand]
+        async Task GoToForgotPasswordPageAsync()
+        {
+            await Shell.Current.GoToAsync($"{nameof(ForgotPasswordPage)}");
+        }
+
+        [RelayCommand]
         public async Task LoginUserAsync()
         {
             await Validate();

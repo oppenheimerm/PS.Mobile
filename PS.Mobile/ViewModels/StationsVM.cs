@@ -43,7 +43,7 @@ namespace PS.Mobile.ViewModels
                 var request = await MemberService.GetStationsAsync();
                 if (request.success)
                 {
-                    foreach (var item in request.Stations)
+                    foreach (var item in request.Stations.Stations)
                     {
                         item.Logos = Helpers.ViewHelpers.GetLogoPaths(item.Logos);
                         Stations.Add(item);

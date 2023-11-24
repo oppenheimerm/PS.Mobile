@@ -89,6 +89,13 @@
                 </Label.GestureRecognizers>
             </Label>
 
+            <Label Margin="0, 20, 0, 0" Text="ForgotPassword" FontSize="14"
+           HorizontalOptions="Center" >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding  GoToForgotPasswordPageCommand }" />
+                </Label.GestureRecognizers>
+            </Label>
+
             <Grid Margin="0, 20, 0, 0" ColumnSpacing="16">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition   Width="*" />

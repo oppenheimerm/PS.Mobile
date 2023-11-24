@@ -5,6 +5,6 @@ namespace PS.Mobile.Services.Interfaces
 {
     public interface IMemberService
     {
-        Task<(List<StationLite> Stations, bool success)> GetStationsAsync();
+        Task<(GetNearestStationsResponse Stations, bool success)> GetStationsAsync();
     }
 }

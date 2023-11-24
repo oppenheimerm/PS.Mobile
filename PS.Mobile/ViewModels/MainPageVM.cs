@@ -30,7 +30,9 @@ namespace PS.Mobile.ViewModels
 
             if (isAuthenticated.Success)
             {
-                await Shell.Current.GoToAsync($"{nameof(StationsPage)}");
+                //await Shell.Current.GoToAsync($"{nameof(StationsPage)}");
+                //  Prevent back button
+                await Shell.Current.GoToAsync("//Stations");
             }
             else
             {

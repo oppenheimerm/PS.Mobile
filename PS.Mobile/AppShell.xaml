@@ -28,11 +28,18 @@
         ContentTemplate="{DataTemplate pages:RegisterPage}"
         Route="RegisterPage" />
 
+    <ShellContent
+        Title="ForgotPassword"
+        ContentTemplate="{DataTemplate pages:ForgotPasswordPage}"
+        Route="ForgotPassword" />
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate pages:HomePage}"
+        Route="Home" />
+
+
     <TabBar>
-        <ShellContent
-        Title="Register"
-        ContentTemplate="{DataTemplate pages:SomesPage}"
-        Route="SomePage" />
 
         <ShellContent
         Title="Stations"

@@ -22,16 +22,16 @@ namespace PS.Mobile.Services
         public async Task<(bool success, string errorMessage)> LoginAsync(PS.Mobile.Models.AuthenticateRequest request)
         {
             ///  REMOVE
-            var devLogin = new PS.Mobile.Models.AuthenticateRequest()
+            /*var devLogin = new PS.Mobile.Models.AuthenticateRequest()
             {
                 EmailAddress = "joesephbrothag@gmail.com",
                 Password = "==45&9!RrTtt="
-            };
+            };*/
 
 
             //  Login tokne is only valid for 20 minutes from now
             var loginTimeStamp = DateTime.Now;
-            var response = await HttpClient.PostAsJsonAsync(Constants.AuthenticateUserUrl, devLogin);
+            var response = await HttpClient.PostAsJsonAsync(Constants.AuthenticateUserUrl, request);
             
             if (response.IsSuccessStatusCode)
             {
@@ -176,7 +176,7 @@ namespace PS.Mobile.Services
             using (var handler = new HttpClientHandler { UseCookies = false })
             using (var client = new HttpClient(handler) { BaseAddress = baseAddress })
             {
-                var message = new HttpRequestMessage(HttpMethod.Post, "/api/Users/refresh-token");
+                var message = new HttpRequestMessage(HttpMethod.Post, "/api/1/Users/refresh-token");
                 message.Headers.Add("Cookie", $"refreshToken={headers.Token}");
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer",request.JwtToken);
                 httpResponseMessage = await client.SendAsync(message);
