@@ -38,11 +38,13 @@ namespace PS.Mobile
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<StationsPage>();
 			builder.Services.AddSingleton<RegisterPage>();
+            builder.Services.AddSingleton<ForgotPasswordPage>();
 
-			//   View Models
-			builder.Services.AddSingleton<MainPageVM>();
+            //   View Models
+            builder.Services.AddSingleton<MainPageVM>();
             builder.Services.AddSingleton<LoginPageVM>();
             builder.Services.AddSingleton<StationsVM>();
+            builder.Services.AddSingleton<ForgotPasswordVM>();
 
 #if DEBUG
             builder.Logging.AddDebug();

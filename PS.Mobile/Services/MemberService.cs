@@ -1,8 +1,7 @@
 ﻿using PS.Core.Models.ApiRequestResponse;
 using PS.Mobile.Services.Interfaces;
 using Newtonsoft.Json;
-using System.Diagnostics;
-using System.Net.Http.Json;
+
 
 namespace PS.Mobile.Services
 {
@@ -15,7 +14,7 @@ namespace PS.Mobile.Services
             AuthService = authService;
         }
 
-        public async Task<(List<StationLite> Stations, bool success)> GetStationsAsync()
+        public async Task<(GetNearestStationsResponse Stations, bool success)> GetStationsAsync()
         {
             var authenticated = await AuthService.IsUserAuthenticated();
             if (authenticated.Success)
@@ -25,7 +24,11 @@ namespace PS.Mobile.Services
                 using (var handler = new HttpClientHandler { UseCookies = false })
                 using (var client = new HttpClient(handler) { BaseAddress = baseAddress })
                 {
-                    var message = new HttpRequestMessage(HttpMethod.Get, Helpers.Constants.GetStations);
+                    // Parameters needed for request:
+                    //          Lat / Long
+                    //          Country
+                    //          DistanceUnit { Miles(0), Kilometers(1)}
+                    var message = new HttpRequestMessage(HttpMethod.Get, $"{Helpers.Constants.GetStations}?fromLat={51.5237747}&fromLongt={-0.065196}&countryId={1}&units={1}");
                     message.Headers.Add("Cookie", $"refreshToken={authenticated.RefreshToken}");
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", authenticated.jwtToken);
                     httpResponseMessage = await client.SendAsync(message);
@@ -33,20 +36,26 @@ namespace PS.Mobile.Services
 
                     if (httpResponseMessage.IsSuccessStatusCode)
                     {
-                        var content = await httpResponseMessage.Content.ReadAsStringAsync();
-                        List<StationLite> Stations = JsonConvert.DeserializeObject<List<StationLite>>(content);
-                        return (Stations, true);
+                        try
+                        {
+                            var content = await httpResponseMessage.Content.ReadAsStringAsync();
+                            PS.Core.Models.ApiRequestResponse.GetNearestStationsResponse stations = JsonConvert.DeserializeObject<GetNearestStationsResponse>(content);
+                            return (stations, true);
+                        }catch(Exception ex)
+                        {
+                            return (new GetNearestStationsResponse(), false);
+                        }
 
                     }
                     else
                     {
-                        return (new List<StationLite>(), false);
+                        return (new GetNearestStationsResponse(), false);
                     }
                 }
             }
             else
             {
-                return (new List<StationLite>(), false);
+                return (new GetNearestStationsResponse(), false);
             }
         }
     }
